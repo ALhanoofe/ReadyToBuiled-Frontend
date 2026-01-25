@@ -1,0 +1,64 @@
+import { useState } from "react"
+import { SignInUser } from "../services/Auth"
+import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+const SignIn = ({ setUser }) => {
+  let navigate = useNavigate()
+
+  const initialState = { email: "", password: "" }
+
+  const [formValues, setFormValues] = useState(initialState)
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const userData = await SignInUser(formValues)
+    setFormValues(initialState)
+    setUser(userData)
+    navigate("/home")
+  }
+
+  return (
+    <div className="auth-page">
+      <div className="auth-card">
+        <form className="col" onSubmit={handleSubmit}>
+
+          <div className="input-wrapper">
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="email"
+              placeholder="example@example.com"
+              onChange={handleChange}
+              value={formValues.email}
+              required
+              autoComplete="email"
+            />
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="password"
+              onChange={handleChange}
+              value={formValues.password}
+              required
+              autoComplete="off"
+            />
+            <Link to="register">if you don't have an account create one !</Link>
+          </div>
+          <button disabled={!formValues.email || !formValues.password}>
+            Sign In
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default SignIn
