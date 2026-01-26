@@ -1,19 +1,19 @@
-import { useState } from 'react'
-import { RegisterUser } from '../services/Auth'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react"
+import { RegisterUser } from "../services/Auth"
+import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 const Register = () => {
   let navigate = useNavigate()
 
   const initialState = {
-    name: '',
-    username:'',
-    email: '',
-    phoneNumber:'',
-    password: '',
-    confirmPassword: '',
-    type:''
+    name: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    type: "",
   }
 
   const [formValues, setFormValues] = useState(initialState)
@@ -24,16 +24,23 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    let userType = ""
+    if (formValues.type === "customer") userType = "customers"
+    else if (formValues.type === "developer") userType = "developer"
+    else {
+      alert("Please select a user type")
+      return
+    }
     await RegisterUser({
       name: formValues.name,
       username: formValues.username,
       email: formValues.email,
-      phoneNumber: formValues.phoneNumber,
+      phoneNumber: parseInt(formValues.phoneNumber, 10),
       password: formValues.password,
-      type: formValues.type
+      userType,
     })
     setFormValues(initialState)
-    navigate('/')
+    navigate("/")
   }
 
   return (
@@ -81,7 +88,7 @@ const Register = () => {
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
                 name="phoneNumber"
-                type="phoneNumber"
+                type="text"
                 placeholder="phoneNumber"
                 onChange={handleChange}
                 value={formValues.phoneNumber}
@@ -114,32 +121,34 @@ const Register = () => {
               />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="type">Are You A Developer or Customer?</label>
-              <input
+              <label htmlFor="type">Are You a Developer or Customer?</label>
+
+              <select
                 name="type"
-                type="type"
-                placeholder="type"
-                onChange={handleChange}
+                id="type"
                 value={formValues.type}
+                onChange={handleChange}
                 required
-                autoComplete="off"
-              />
+              >
+                <option value="">-- Select Type --</option>
+                <option value="customer">Customer</option>
+                <option value="developer">Developer</option>
+              </select>
             </div>
+
             <Link to="/">do you have an account !</Link>
 
             <button
               disabled={
                 !formValues.email ||
-                (!formValues.password &&
-                  formValues.password === formValues.confirmPassword)
+                !formValues.password ||
+                formValues.password !== formValues.confirmPassword
               }
             >
               Register
             </button>
-
           </form>
         </div>
-
       </div>
     </div>
   )
