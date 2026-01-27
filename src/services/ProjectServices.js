@@ -17,8 +17,4 @@ export const CreateProject = async (projectData) => {
     return res.data
   } catch (error) {
     throw error
-  }
-export const CreateProject = async (data) => {
-  const res = await Client.post("/projects", data)
-  return res.data
-}
+  }}

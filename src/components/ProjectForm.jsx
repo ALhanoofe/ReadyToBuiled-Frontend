@@ -12,21 +12,17 @@ const ProjectForm = () => {
     language: "",
     status: "",
     price: ""
-    description: "",
-    // image: null
+    // image ignored for now
   }
-
-
 
   const [newProject, setNewProject] = useState(emptyProject)
 
   const handleChange = (e) => {
     setNewProject({
       ...newProject,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -34,8 +30,8 @@ const ProjectForm = () => {
     const createdProject = await CreateProject(newProject)
 
     setNewProject(emptyProject)
-  navigate(`/project/${createdProject._id}`)
-}
+    navigate(`/project/${createdProject._id}`)
+  }
 
   return (
     <div className="project-page">
@@ -44,7 +40,6 @@ const ProjectForm = () => {
 
         <form onSubmit={handleSubmit}>
 
-        <form onSubmit={handleSubmit} >
           <input
             type="text"
             name="name"
@@ -70,7 +65,6 @@ const ProjectForm = () => {
             onChange={handleChange}
             placeholder="Languages / Tech Stack"
             required
-            placeholder="Duration (months)"
           />
 
           <input
@@ -100,8 +94,7 @@ const ProjectForm = () => {
             required
           />
 
-          {/* image field intentionally skipped */}
-
+          {/* image  */}
 
           <button type="submit">Submit Project</button>
         </form>
