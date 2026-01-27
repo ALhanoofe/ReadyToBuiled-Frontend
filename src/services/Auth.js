@@ -29,7 +29,6 @@ export const Signout = () => {
   }
 }
 
-
 export const CheckSession = async () => {
   try {
     const res = await Client.get("/auth/session")
@@ -39,6 +38,3 @@ export const CheckSession = async () => {
     throw error
   }
 }
-
-
-
