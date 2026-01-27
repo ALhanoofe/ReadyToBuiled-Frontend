@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import { CheckSession } from './services/Auth'
 // import Nav from './components/Nav'
 
+import ProjectForm from './components/ProjectForm'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -41,9 +42,21 @@ const App = () => {
         <Route path="/register" element={<Register />} />
 
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+
+
+
+
+        <Route path='/ProjectForm' element={
+            <RequireAuth>
+              <ProjectForm />
+            </RequireAuth >
+          }
+          />
       </Routes>
     </>
   )
 }
 
 export default App
+
