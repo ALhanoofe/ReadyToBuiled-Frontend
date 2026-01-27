@@ -1,8 +1,3 @@
-import './App.css'
-
-import { Routes, Route } from 'react-router-dom'
-
-import Project from './components/Project'
 
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
@@ -15,6 +10,7 @@ import Nav from "./components/Nav"
 import RequireAuth from "./components/RequireAuth"
 import Profile from "./components/Profile"
 import ProjectForm from "./components/ProjectForm"
+import Project from './components/Project'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -40,9 +36,7 @@ const App = () => {
   return (
     <>
       <header><Nav user={user} handleLogOut={handleLogOut} /></header>
-      <header>
-        <Nav user={user} handleLogOut={handleLogOut} />
-      </header>
+
       <Routes>
         <Route path="/" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
@@ -52,6 +46,8 @@ const App = () => {
         <Route path="/home/:id" element={<Project />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
+
+
         <Route path="profile" element={<Profile />} />
       </Routes>
     </>
