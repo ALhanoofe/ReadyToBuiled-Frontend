@@ -23,7 +23,7 @@ const App = () => {
     const userData = await CheckSession()
     setUser(userData)
   }
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token")
 
