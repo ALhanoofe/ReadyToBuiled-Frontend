@@ -5,7 +5,9 @@ import SignIn from './components/SignIn'
 import Register from './components/Register'
 import { useState, useEffect } from "react"
 import { CheckSession } from './services/Auth'
-// import Nav from './components/Nav'
+import Nav from './components/Nav'
+import RequireAuth from './components/RequireAuth'
+import Profile from './components/Profile'
 
 import ProjectForm from './components/ProjectForm'
 
@@ -35,18 +37,23 @@ const App = () => {
   return (
     <>
     <header>
-        {/* <Nav user={user} handleLogOut={handleLogOut} /> */}
+        <Nav user={user} handleLogOut={handleLogOut} />
       </header>
       <Routes>
         <Route path="/" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
 
         <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="profile" element={<Profile />} />
 
 
 
-        <Route path='/ProjectForm' element={<ProjectForm />}/>
+        <Route path='/ProjectForm' element={
+            <RequireAuth>
+            <ProjectForm />
+            </RequireAuth>
+          }/>
       </Routes>
     </>
   )
