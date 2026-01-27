@@ -46,13 +46,7 @@ const App = () => {
 
 
 
-
-        <Route path='/ProjectForm' element={
-            <RequireAuth>
-              <ProjectForm />
-            </RequireAuth >
-          }
-          />
+        <Route path='/ProjectForm' element={<ProjectForm />}/>
       </Routes>
     </>
   )

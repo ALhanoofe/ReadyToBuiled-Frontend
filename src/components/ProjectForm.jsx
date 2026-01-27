@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { CreateProject } from '../services/ProjectServices'
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { CreateProject } from "../services/ProjectServices"
 
 const ProjectForm = () => {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ const ProjectForm = () => {
     price: "",
     language: "",
     description: "",
-    image: null
+    // image: null
   }
 
   const [newProject, setNewProject] = useState(emptyProject)
@@ -21,44 +21,26 @@ const ProjectForm = () => {
   const handleChange = (e) => {
     setNewProject({
       ...newProject,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-  const handleFileChange = (e) => {
-    setNewProject({
-      ...newProject,
-      image: e.target.files[0]
-    })
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let data
-
-    if (newProject.image) {
-      data = new FormData()
-      for (let key in newProject) {
-        data.append(key, newProject[key])
-      }
-    } else {
-      data = newProject
-    }
-
-    const createdProject = await CreateProject(data)
+    const createdProject = await CreateProject(newProject)
 
     setNewProject(emptyProject)
-    navigate(`/project/${createdProject._id}`)
-  }
+  navigate(`/project/${createdProject._id}`)
+}
 
   return (
     <div className="project-page">
       <div className="project-card">
         <h1>Add New Project</h1>
 
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-
+        <form onSubmit={handleSubmit} >
           <input
             type="text"
             name="pname"
@@ -93,7 +75,7 @@ const ProjectForm = () => {
             name="duration"
             value={newProject.duration}
             onChange={handleChange}
-            placeholder="Duration (days)"
+            placeholder="Duration (months)"
           />
 
           <input
@@ -122,12 +104,7 @@ const ProjectForm = () => {
             required
           />
 
-          <input
-            type="file"
-            name="image"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
+
 
           <button type="submit">Submit Project</button>
         </form>
