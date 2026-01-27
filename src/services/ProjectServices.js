@@ -18,4 +18,7 @@ export const CreateProject = async (projectData) => {
   } catch (error) {
     throw error
   }
+export const CreateProject = async (data) => {
+  const res = await Client.post("/projects", data)
+  return res.data
 }

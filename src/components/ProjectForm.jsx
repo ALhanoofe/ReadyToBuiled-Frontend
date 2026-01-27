@@ -12,6 +12,7 @@ const ProjectForm = () => {
     language: "",
     status: "",
     price: ""
+    description: "",
     // image: null
   }
 
@@ -43,6 +44,7 @@ const ProjectForm = () => {
 
         <form onSubmit={handleSubmit}>
 
+        <form onSubmit={handleSubmit} >
           <input
             type="text"
             name="name"
@@ -68,6 +70,7 @@ const ProjectForm = () => {
             onChange={handleChange}
             placeholder="Languages / Tech Stack"
             required
+            placeholder="Duration (months)"
           />
 
           <input
@@ -98,6 +101,7 @@ const ProjectForm = () => {
           />
 
           {/* image field intentionally skipped */}
+
 
           <button type="submit">Submit Project</button>
         </form>
