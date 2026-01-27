@@ -25,11 +25,7 @@ const Home = ({ }) => {
             <div className="card" key={project._id}>
               <Link to={`/home/${project._id}`}>
                 <h2>{project.pname}</h2>
-                <h3>{project.category}</h3>
-                <h3>{project.type}</h3>
-                <h3>{project.duration}</h3>
                 <h3>{project.price}</h3>
-
               </Link>
             </div>
 
