@@ -6,15 +6,17 @@ const ProjectForm = () => {
   const navigate = useNavigate()
 
   const emptyProject = {
-    pname: "",
+    name: "",
+    description: "",
     category: "",
-    type: "",
-    duration: "",
-    price: "",
     language: "",
+    status: "",
+    price: ""
     description: "",
     // image: null
   }
+
+
 
   const [newProject, setNewProject] = useState(emptyProject)
 
@@ -40,11 +42,13 @@ const ProjectForm = () => {
       <div className="project-card">
         <h1>Add New Project</h1>
 
+        <form onSubmit={handleSubmit}>
+
         <form onSubmit={handleSubmit} >
           <input
             type="text"
-            name="pname"
-            value={newProject.pname}
+            name="name"
+            value={newProject.name}
             onChange={handleChange}
             placeholder="Project Name"
             required
@@ -59,22 +63,13 @@ const ProjectForm = () => {
             required
           />
 
-          <select
-            name="type"
-            value={newProject.type}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Project Type</option>
-            <option value="Ready-made">Ready-made</option>
-            <option value="Custom Request">Custom Request</option>
-          </select>
-
           <input
-            type="number"
-            name="duration"
-            value={newProject.duration}
+            type="text"
+            name="language"
+            value={newProject.language}
             onChange={handleChange}
+            placeholder="Languages / Tech Stack"
+            required
             placeholder="Duration (months)"
           />
 
@@ -84,17 +79,18 @@ const ProjectForm = () => {
             value={newProject.price}
             onChange={handleChange}
             placeholder="Price"
-            required
           />
 
-          <input
-            type="text"
-            name="language"
-            value={newProject.language}
+          <select
+            name="status"
+            value={newProject.status}
             onChange={handleChange}
-            placeholder="Languages"
-            required
-          />
+          >
+            <option value="">Select Status</option>
+            <option value="available">Available</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
 
           <textarea
             name="description"
@@ -104,6 +100,7 @@ const ProjectForm = () => {
             required
           />
 
+          {/* image field intentionally skipped */}
 
 
           <button type="submit">Submit Project</button>

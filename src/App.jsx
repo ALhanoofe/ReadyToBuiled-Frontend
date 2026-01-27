@@ -1,19 +1,20 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home'
-import SignIn from './components/SignIn'
-import Register from './components/Register'
+import "./App.css"
+import { Routes, Route } from "react-router-dom"
+import Home from "./components/Home"
+import SignIn from "./components/SignIn"
+import Register from "./components/Register"
 import { useState, useEffect } from "react"
+import { CheckSession } from "./services/Auth"
+// import Nav from './components/Nav'
 import { CheckSession } from './services/Auth'
 import Nav from './components/Nav'
 import RequireAuth from './components/RequireAuth'
 import Profile from './components/Profile'
 
-import ProjectForm from './components/ProjectForm'
+import ProjectForm from "./components/ProjectForm"
 
 const App = () => {
   const [user, setUser] = useState(null)
-
 
   const handleLogOut = () => {
     setUser(null)
@@ -23,11 +24,10 @@ const App = () => {
   const checkToken = async () => {
     const userData = await CheckSession()
     setUser(userData)
-
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
 
     if (token) {
       checkToken()
@@ -36,6 +36,7 @@ const App = () => {
 
   return (
     <>
+      <header>{/* <Nav user={user} handleLogOut={handleLogOut} /> */}</header>
     <header>
         <Nav user={user} handleLogOut={handleLogOut} />
       </header>
@@ -44,6 +45,9 @@ const App = () => {
         <Route path="/register" element={<Register />} />
 
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+
+        <Route path="/ProjectForm" element={<ProjectForm />} />
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="profile" element={<Profile />} />
 
@@ -60,4 +64,3 @@ const App = () => {
 }
 
 export default App
-
