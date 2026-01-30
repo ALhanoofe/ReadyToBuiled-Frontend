@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 
 
-const Home = ({ }) => {
+const Home = ({z}) => {
 
   const [projects, setProjects] = useState([])
 

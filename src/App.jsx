@@ -11,6 +11,7 @@ import RequireAuth from "./components/RequireAuth"
 import Profile from "./components/Profile"
 import ProjectForm from "./components/ProjectForm"
 import Project from './components/Project'
+import ProjectDetails from "./components/ProjectDetails"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -41,11 +42,12 @@ const App = () => {
         <Route path="/" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home user={user} />} />
+        <Route path="/" element={<Home user={user} />} />
         <Route path="/home/:id" element={<Project />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
+        <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
 
         <Route path="profile" element={<Profile />} />
