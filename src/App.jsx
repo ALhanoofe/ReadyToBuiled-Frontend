@@ -1,4 +1,3 @@
-
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
@@ -10,7 +9,7 @@ import Nav from "./components/Nav"
 import RequireAuth from "./components/RequireAuth"
 import Profile from "./components/Profile"
 import ProjectForm from "./components/ProjectForm"
-import Project from './components/Project'
+import Project from "./components/Project"
 import ProjectDetails from "./components/ProjectDetails"
 
 const App = () => {
@@ -36,7 +35,9 @@ const App = () => {
 
   return (
     <>
-      <header><Nav user={user} handleLogOut={handleLogOut} /></header>
+      <header>
+        <Nav user={user} handleLogOut={handleLogOut} />
+      </header>
 
       <Routes>
         <Route path="/" element={<SignIn setUser={setUser} />} />
@@ -47,8 +48,8 @@ const App = () => {
         <Route path="/home/:id" element={<ProjectDetails user={user} />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
-        <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
+        <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
         <Route path="profile" element={<Profile />} />
       </Routes>
