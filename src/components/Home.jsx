@@ -1,20 +1,39 @@
 import { useEffect, useState } from "react";
-import { GetProjects } from "../services/ProjectServices"
+import { GetProjectDetails } from "../services/ProjectServices"
 import { Link } from "react-router-dom"
 
 
 
-const Home = ({z}) => {
+const Home = ({ user }) => {
 
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
     const handleProjects = async () => {
-      const data = await GetProjects()
-      setProjects(data)
+      try {
+
+        const allProjects = await GetProjectDetails()
+
+        if (user.userType === "customers") {
+          const developerProjects = allProjects.filter(
+            (project) => project.userId.userType === "developer"
+          )
+          setProjects(developerProjects)
+        } else {
+          const myProjects = allProjects.filter(
+            (project) => project.userId.userType === "customers"
+          )
+          console.log("myProjects", myProjects)
+          setProjects(myProjects)
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
+
     handleProjects()
-  }, [])
+  }, [user])
+
 
   return (
     <>
@@ -24,7 +43,7 @@ const Home = ({z}) => {
           {projects.map((project) => (
             <div className="card" key={project._id}>
               <Link to={`/home/${project._id}`}>
-                <h2>{project.pname}</h2>
+                <h2>{project.name}</h2>
                 <h3>{project.price}</h3>
               </Link>
             </div>

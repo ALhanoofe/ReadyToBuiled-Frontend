@@ -1,41 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetProjectDetails } from "../services/ProjectServices";
+import { GetProjectById } from "../services/ProjectServices";
 
 
 
-const Project = () => {
+const ProjectDetails = () => {
   const { id } = useParams()
-  const [projects, setProjects] = useState([])
-
+  const [project, setProject] = useState([])
 
   useEffect(() => {
-    const fetchProject = async () => {
-      const data = await GetProjectDetails()
-      setProjects(data)
+    if (!id) return
+
+    const handleProject = async () => {
+      const projectData = await GetProjectById(id)
+      setProject(projectData)
+
     }
 
-    fetchProject()
-
+    handleProject()
   }, [id])
+
 
 
   return (
 
     <>
-      <h1>projects D</h1>
+      <h1>{project && project.name}</h1>
       <div className="projectDetails">
-        {projects.map((project) => (
-          <div className="project" key={project._id}>
-            <h2>name:{project.name}</h2>
-            <h3>category:{project.category}</h3>
-            <h3>Description:{project.description}</h3>
-            <h3>Language:{project.language}</h3>
-          </div>
-        ))}
+        <div className="project" key={project._id}>
+          <h2>name:{project.name}</h2>
+          <h3>category:{project.category}</h3>
+          <h3>Description:{project.description}</h3>
+          <h3>Language:{project.language}</h3>
+        </div>
       </div>
     </>
   )
 
 }
-export default Project
+export default ProjectDetails

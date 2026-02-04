@@ -11,15 +11,6 @@ export const GetProjects = async () => {
 }
 
 
-export const GetProjectById = async (projectId) => {
-  try {
-    const res = await Client.get(`/projects/${projectId}`)
-    return res.data
-  } catch (error) {
-    throw error
-
-  }
-}
 export const CreateProject = async (projectData) => {
   try {
     const res = await Client.post("/projects", projectData)
@@ -48,5 +39,15 @@ export const GetProjectDetailByProject = async (projectId) => {
     return res.data
   } catch (error) {
     throw error
+  }
+}
+
+export const GetProjectById = async (projectId) => {
+  try {
+    const res = await Client.get(`/detail/${projectId}`)
+    return res.data
+  } catch (error) {
+    throw error
+
   }
 }
