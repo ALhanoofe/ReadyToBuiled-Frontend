@@ -1,8 +1,8 @@
 import Client from "./api"
 
-export const GetProjects = async () => {
+export const GetFolders = async () => {
   try {
-    const res = await Client.get('/projects')
+    const res = await Client.get('/folders')
     return res.data
 
   } catch (error) {
@@ -20,6 +20,25 @@ export const CreateProject = async (projectData) => {
   }
 }
 
+
+export const GetFolderById = async (projectId) => {
+  try {
+    const res = await Client.get(`/folders/${projectId}`)
+    return res.data
+  } catch (error) {
+    throw error
+
+  }
+}
+
+export const GetFoldersForUser = async (userId) => {
+  try {
+    const res = await Client.get(`/folders/user/${userId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // -------------------------------------------------------------------------
 

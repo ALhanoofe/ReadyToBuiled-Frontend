@@ -4,7 +4,7 @@ import { GetProjectDetailByProject } from "../services/ProjectServices";
 
 
 
-const Project = () => {
+const MyProject = () => {
   const { id } = useParams()
   const [projects, setProjects] = useState([])
 
@@ -40,4 +40,4 @@ const Project = () => {
   )
 
 }
-export default Project
+export default MyProject

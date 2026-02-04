@@ -10,8 +10,9 @@ import Nav from "./components/Nav"
 import RequireAuth from "./components/RequireAuth"
 import Profile from "./components/Profile"
 import ProjectForm from "./components/ProjectForm"
-import Project from './components/Project'
+import Project from './components/MyProject'
 import ProjectDetails from "./components/ProjectDetails"
+import Folders from "./components/Folders"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -43,12 +44,13 @@ const App = () => {
         <Route path="/register" element={<Register />} />
 
         <Route path="/home" element={<Home user={user} />} />
-        <Route path="/" element={<Home user={user} />} />
+
         <Route path="/home/:id" element={<ProjectDetails user={user} />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
         <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
+        <Route path="/Folder" element={<Folders user={user} />} />
 
         <Route path="profile" element={<Profile />} />
       </Routes>
