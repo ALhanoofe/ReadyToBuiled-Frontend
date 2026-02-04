@@ -1,8 +1,8 @@
 import Client from "./api"
 
-export const GetProjects = async () => {
+export const GetFolders = async () => {
   try {
-    const res = await Client.get("/projects")
+    const res = await Client.get('/folders')
     return res.data
   } catch (error) {
     throw error

@@ -23,8 +23,7 @@ const Home = ({ user }) => {
           const myProjects = allProjects.filter(
             (project) => project.userId.userType === "customers"
           )
-          console.log("myProjects", myProjects)
-          setProjects(myProjects)
+        setProjects(myProjects)
         }
       } catch (error) {
         console.error(error)
