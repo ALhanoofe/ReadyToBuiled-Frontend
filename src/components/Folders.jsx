@@ -28,7 +28,13 @@ const Folders = () => {
 
   return (
     <div className="folders">
+
       <h1>Folders Page</h1>
+
+      <Link to={`/folderForm`} className="add-folder-btn">
+        + Add New Folder
+      </Link>
+
       <div className="grid col-4">
         {folders.map((folder) => (
           <div className="card" key={folder._id}>
