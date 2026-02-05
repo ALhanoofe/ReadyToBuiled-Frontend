@@ -52,9 +52,9 @@ export const GetProjectDetails = async () => {
   }
 }
 
-export const GetProjectDetailByProject = async (projectId) => {
+export const GetProjectDetailByFolder = async (folderId) => {
   try {
-    const res = await Client.get(`/detail/${projectId}`)
+    const res = await Client.get(`/detail/folder/${folderId}`)
     return res.data
   } catch (error) {
     throw error

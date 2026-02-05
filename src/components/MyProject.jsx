@@ -1,43 +1,59 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { GetProjectDetailByProject } from "../services/ProjectServices";
+import { useParams, Link } from "react-router-dom";
+import { GetFolderById, GetProjectDetailByFolder } from "../services/ProjectServices";
 
 
 
-const MyProject = () => {
+const ProjectDetails = () => {
   const { id } = useParams()
-  const [projects, setProjects] = useState([])
-
+  const [folder, setFolder] = useState(null)
+  const [projects, setProject] = useState([])
 
   useEffect(() => {
     if (!id) return
 
-    const fetchProject = async () => {
-      const data = await GetProjectDetailByProject(id)
-      setProjects(data)
+    const handleProject = async () => {
+      const folderData = await GetFolderById(id)
+      setFolder(folderData)
+
+      const projectData = await GetProjectDetailByFolder(id)
+      setProject(projectData)
+
     }
 
-    fetchProject()
-
+    handleProject()
   }, [id])
 
 
-  return (
 
+  return (
     <>
-      <h1>projects</h1>
       <div className="projectDetails">
-        {projects.map((project) => (
-          <div className="project" key={project._id}>
-            <h2>name:{project.name}</h2>
-            <h3>category:{project.category}</h3>
-            <h3>Description:{project.description}</h3>
-            <h3>Language:{project.language}</h3>
-          </div>
-        ))}
+        <div className="channel-header">
+          <h1>{folder?.pname}</h1>
+          {/* 
+          <Link to={`/postForm/${id}`} className="add-post-btn">
+            + Add New Post
+          </Link> */}
+        </div>
+
+        <div className="projectDetail">
+          {projects.map((project) => (
+            <div className="card" key={project._id}>
+              <Link to={`/projectsDetail/${project._id}`}>
+                <h2>{project.name}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
+
+
+
+
+
       </div>
     </>
   )
 
 }
-export default MyProject
+export default ProjectDetails
