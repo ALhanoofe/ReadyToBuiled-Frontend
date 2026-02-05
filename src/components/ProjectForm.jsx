@@ -23,16 +23,16 @@ const ProjectForm = () => {
     setNewProject(emptyProject)
     return createdProject
   }
+
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
-    
+
   }
 
-  // on form submit
   const handleSubmit = async (e) => {
     e.preventDefault()
     const createdProject = await addProject(e)
-    navigate(`/home/${createdProject._id}`)
+    navigate(`/projectDetail/${createdProject._id}`)
   }
 
   return (

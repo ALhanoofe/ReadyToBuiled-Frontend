@@ -15,6 +15,8 @@ const FolderForm = () => {
   const [newFolder, setNewFolder] = useState(emptyFolder)
 
   const addFolder = async (e) => {
+    e.preventDefault()
+
     const createdFolder = await CreateFolder(newFolder)
     setNewFolder(emptyFolder)
     return createdFolder
@@ -26,7 +28,6 @@ const FolderForm = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
     const createdFolder = await addFolder()
     navigate(`/folders/${createdFolder._id}`)
   }

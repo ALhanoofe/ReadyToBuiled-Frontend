@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { GetFolderById, GetProjectDetailByFolder } from "../services/ProjectServices";
+import { Link } from "react-router-dom";
+import { GetProjectDetails } from "../services/ProjectServices";
 import '../style/detail.css'
 
 
 
-const ProjectDetails = () => {
-  const { id } = useParams()
-  const [folder, setFolder] = useState(null)
-  const [projects, setProject] = useState([])
+const MineProject = (
+  { user }
+) => {
+  const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    if (!id) return
 
     const handleProject = async () => {
-      const folderData = await GetFolderById(id)
-      setFolder(folderData)
+      const allProjects = await GetProjectDetails()
 
-      const projectData = await GetProjectDetailByFolder(id)
-      setProject(projectData)
+      const myProjects = allProjects.filter(
+        (project) => project.userId?._id === user?.id
+      )
+      setProjects(myProjects)
+
     }
 
     handleProject()
-  }, [id])
+  })
 
 
 
@@ -30,7 +31,7 @@ const ProjectDetails = () => {
     <>
       <div className="projectDetails">
         <div className="channel-header">
-          <h1>{folder?.pname}</h1>
+          <h1>My Projects</h1>
           {/*
           <Link to={`/postForm/${id}`} className="add-post-btn">
             + Add New Post
@@ -56,4 +57,4 @@ const ProjectDetails = () => {
   )
 
 }
-export default ProjectDetails
+export default MineProject

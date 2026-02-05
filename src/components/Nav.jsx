@@ -22,6 +22,7 @@ const Nav = () => {
             <NavLink to="profile">My Profile</NavLink>
             <NavLink to="/" onClick={handleLogOut}>Logout</NavLink>
             <NavLink to="folders">My Folder</NavLink>
+            <NavLink to="/mineProject">my project</NavLink>
 
 
           </>

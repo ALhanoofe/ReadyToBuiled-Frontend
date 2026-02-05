@@ -71,7 +71,6 @@ export const GetProjectById = async (projectId) => {
 }
 
 
-
 export const CreateProjectDetail = async (projectData) => {
   try {
     const res = await Client.post("/detail", projectData)
