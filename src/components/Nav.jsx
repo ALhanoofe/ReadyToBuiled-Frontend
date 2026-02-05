@@ -21,8 +21,7 @@ const Nav = () => {
             <NavLink to="ProjectForm">Add New Project</NavLink>
             <NavLink to="profile">My Profile</NavLink>
             <NavLink to="/" onClick={handleLogOut}>Logout</NavLink>
-            <NavLink to="ProjectDetails">Project Details</NavLink>
-            <NavLink to="Folder">My Folder</NavLink>
+            <NavLink to="folders">My Folder</NavLink>
 
 
           </>

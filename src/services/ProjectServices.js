@@ -9,9 +9,11 @@ export const GetFolders = async () => {
   }
 }
 
-export const CreateProjectDetail = async (projectData) => {
+
+
+export const CreateFolder = async (data) => {
   try {
-    const res = await Client.post("/detail", projectData)
+    const res = await Client.post("/folders", data)
     return res.data
   } catch (error) {
     throw error
@@ -67,3 +69,15 @@ export const GetProjectById = async (projectId) => {
     throw error
   }
 }
+
+
+
+export const CreateProjectDetail = async (projectData) => {
+  try {
+    const res = await Client.post("/detail", projectData)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
