@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { GetFolderById, GetProjectDetailByFolder } from "../services/ProjectServices";
+import '../style/detail.css'
 
 
 
@@ -31,7 +32,7 @@ const ProjectDetails = () => {
       <div className="projectDetails">
         <div className="channel-header">
           <h1>{folder?.pname}</h1>
-          {/* 
+          {/*
           <Link to={`/postForm/${id}`} className="add-post-btn">
             + Add New Post
           </Link> */}

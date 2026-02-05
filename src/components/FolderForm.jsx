@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CreateFolder } from '../services/ProjectServices'
 import { useNavigate } from 'react-router-dom'
+import '../style/folder.css'
 
 
 const FolderForm = () => {
@@ -13,7 +14,7 @@ const FolderForm = () => {
   }
   const [newFolder, setNewFolder] = useState(emptyFolder)
 
-  const addFolder = async (e) => {    
+  const addFolder = async (e) => {
     const createdFolder = await CreateFolder(newFolder)
     setNewFolder(emptyFolder)
     return createdFolder

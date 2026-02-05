@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetProjectById } from "../services/ProjectServices";
+import '../style/detail.css'
 
 
 

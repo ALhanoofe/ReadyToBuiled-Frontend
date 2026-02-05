@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CheckSession } from '../services/Auth';
 import { GetFoldersForUser } from "../services/ProjectServices";
 import { Link } from "react-router-dom";
+import '../style/folder.css'
 
 const Folders = () => {
   const [folders, setFolders] = useState([]);
