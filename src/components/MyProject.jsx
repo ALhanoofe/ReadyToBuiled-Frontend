@@ -40,7 +40,7 @@ const ProjectDetails = () => {
         <div className="projectDetail">
           {projects.map((project) => (
             <div className="card" key={project._id}>
-              <Link to={`/projectsDetail/${project._id}`}>
+              <Link to={`/projectDetail/${project._id}`}>
                 <h2>{project.name}</h2>
               </Link>
             </div>

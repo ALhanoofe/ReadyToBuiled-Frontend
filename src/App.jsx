@@ -52,7 +52,7 @@ const App = () => {
 
         <Route path="/Folder" element={<Folders user={user} />} />
         <Route path="/folders/:id" element={<MyProject />} />
-        <Route path="/ProjectDetails" element={<ProjectDetails />} />
+        <Route path="/projectDetail/:id" element={<ProjectDetails />} />
 
         <Route path="profile" element={<Profile />} />
       </Routes>

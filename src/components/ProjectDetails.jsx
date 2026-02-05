@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetProjectById, GetProjectDetailByFolder } from "../services/ProjectServices";
+import { GetProjectById } from "../services/ProjectServices";
 
 
 
 const ProjectDetails = () => {
   const { id } = useParams()
-  const [folder, setFolder] = useState([])
-  const [projects, setProject] = useState([])
+  const [project, setProject] = useState(null)
 
   useEffect(() => {
     if (!id) return
 
     const handleProject = async () => {
-      const folderdata = await GetProjectById(id)
-      setFolder(folderdata)
 
-      const projectData = await GetProjectDetailByFolder(id)
+      const projectData = await GetProjectById(id)
       setProject(projectData)
 
     }
@@ -28,26 +25,11 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <div className="projectDetails">
-        <div className="channel-header">
-          <h1>{folder && folder.name}</h1>
-          {/* 
-          <Link to={`/postForm/${id}`} className="add-post-btn">
-            + Add New Post
-          </Link> */}
-        </div>
-
-        <div className="projectDetail">
-          {projects.map((project) => (
-            <Link to={`//${project._id}`}>
-              <h2>{project.name}</h2>
-            </Link>
-
-          ))}
-        </div>
-
-
-
+      <div className="projectDetail" key={project?._id}>
+        <h2>Name:{project?.name}</h2>
+        <p>Description:{project?.description}</p>
+        <p>Category:{project?.category}</p>
+        <p>Language:{project?.language}</p>
 
 
       </div>

@@ -23,7 +23,7 @@ const Home = ({ user }) => {
           const myProjects = allProjects.filter(
             (project) => project.userId.userType === "customers"
           )
-        setProjects(myProjects)
+          setProjects(myProjects)
         }
       } catch (error) {
         console.error(error)
@@ -41,7 +41,7 @@ const Home = ({ user }) => {
         <div className="grid col-4">
           {projects.map((project) => (
             <div className="card" key={project._id}>
-              <Link to={`/home/${project._id}`}>
+              <Link to={`/projectDetail/${project._id}`}>
                 <h2>{project.name}</h2>
                 <h3>{project.price}</h3>
               </Link>
