@@ -1,0 +1,291 @@
+/* project detail */
+:root {
+  --dark: #2B2B2B;
+  --dark-gray: #565656;
+  --gray: #848484;
+  --light-gray: #B3B3B3;
+  --off-white: #E0E0E0;
+}
+
+
+.projectDetail {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 3.5rem;
+  background: linear-gradient(160deg, var(--dark), var(--dark-gray));
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  color: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.projectDetail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+
+.projectDetail::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05),
+    transparent 60%
+  );
+  top: -50%;
+  left: -50%;
+  animation: floatGlow 10s linear infinite;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(20%, 20%); }
+  100% { transform: translate(0, 0); }
+}
+
+
+.projectDetail h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+
+.projectDetail h2::before {
+  content: "🛠️ ";
+  font-size: 2rem;
+}
+
+
+.projectDetail p:nth-of-type(1) {
+  margin-bottom: 2.5rem;
+  padding: 1.6rem 1.8rem;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--off-white);
+  position: relative;
+}
+
+
+.projectDetail p:nth-of-type(1)::before {
+  content: "📝 ";
+  font-size: 1.3rem;
+  margin-right: 0.4rem;
+}
+
+
+.projectDetail p:nth-of-type(2),
+.projectDetail p:nth-of-type(3),
+.projectDetail p:nth-of-type(4) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.8rem;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+  color: var(--light-gray);
+  backdrop-filter: blur(4px);
+}
+
+
+.projectDetail p:nth-of-type(2)::before {
+  content: "📂";
+}
+
+.projectDetail p:nth-of-type(3)::before {
+  content: "💻";
+}
+
+.projectDetail p:nth-of-type(4)::before {
+  content: "🏷️";
+}
+
+
+.projectDetail p:nth-of-type(2):hover,
+.projectDetail p:nth-of-type(3):hover,
+.projectDetail p:nth-of-type(4):hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--off-white);
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+}
+
+
+@media (max-width: 768px) {
+  .projectDetail {
+    margin: 2rem 1rem;
+    padding: 2.2rem;
+  }
+
+  .projectDetail h2 {
+    font-size: 1.9rem;
+  }
+}
+
+
+/* profile */
+
+:root {
+  --dark: #2B2B2B;
+  --dark-gray: #565656;
+  --gray: #848484;
+  --light-gray: #B3B3B3;
+  --off-white: #E0E0E0;
+}
+
+
+.profile {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 3.5rem;
+  background: linear-gradient(160deg, var(--dark), var(--dark-gray));
+  border-radius: 26px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  color: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  animation: floatGlow 12s linear infinite;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(20%, 15%); }
+  100% { transform: translate(0, 0); }
+}
+
+
+.profile h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+
+
+
+
+.profile h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--off-white), transparent);
+}
+
+.profile h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--light-gray);
+  padding: 1rem 1.4rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.profile h3:nth-of-type(1)::before { content: "👤 "; }
+.profile h3:nth-of-type(2)::before { content: "🏷️ "; }
+.profile h3:nth-of-type(3)::before { content: "📧 "; }
+.profile h3:nth-of-type(4)::before { content: "📱 "; }
+
+
+.profile h3:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+  color: var(--off-white);
+}
+
+
+.profile h3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.profile h3:hover::after {
+  transform: translateX(100%);
+}
+
+
+.profile h2 {
+  margin-top: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.profile h2::before {
+  content: "📁 ";
+}
+
+
+.profile .grid {
+  margin-top: 2rem;
+  min-height: 140px;
+  border-radius: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: 0.95rem;
+  position: relative;
+}
+
+
+.profile .grid::after {
+  content: "Your projects will appear here ✨";
+}
+
+@media (max-width: 768px) {
+  .profile {
+    margin: 2rem 1rem;
+    padding: 2.2rem;
+  }
+
+  .profile h1 {
+    font-size: 2rem;
+  }
+}

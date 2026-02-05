@@ -2,6 +2,7 @@ import { useState } from "react"
 import { SignInUser } from "../services/Auth"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import '../style/auth.css'
 
 const SignIn = ({ setUser }) => {
   let navigate = useNavigate()
@@ -50,8 +51,15 @@ const SignIn = ({ setUser }) => {
               required
               autoComplete="off"
             />
-            <Link to="register">if you don't have an account create one !</Link>
+
+
+
           </div>
+
+              <div className="input-wrapper">
+            <Link to="register" className="auth-link">if you don't have an account create one !</Link>
+
+            </div>
           <button disabled={!formValues.email || !formValues.password}>
             Sign In
           </button>

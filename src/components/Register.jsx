@@ -2,6 +2,7 @@ import { useState } from "react"
 import { RegisterUser } from "../services/Auth"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
+import "../style/auth.css"
 
 const Register = () => {
   let navigate = useNavigate()
@@ -135,9 +136,11 @@ const Register = () => {
                 <option value="developer">Developer</option>
               </select>
             </div>
-
-            <Link to="/">do you have an account !</Link>
-
+            <div className="input-wrapper">
+              <Link to="/" className="auth-link">
+                do you have an account !
+              </Link>
+            </div>
             <button
               disabled={
                 !formValues.email ||
