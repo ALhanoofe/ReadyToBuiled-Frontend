@@ -18,6 +18,27 @@ export const CreateProjectDetail = async (projectData) => {
   }
 }
 
+
+
+export const GetFolderById = async (projectId) => {
+  try {
+    const res = await Client.get(`/folders/${projectId}`)
+    return res.data
+  } catch (error) {
+    throw error
+
+  }
+}
+
+export const GetFoldersForUser = async (userId) => {
+  try {
+    const res = await Client.get(`/folders/user/${userId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // -------------------------------------------------------------------------
 
 export const GetProjectDetails = async () => {
