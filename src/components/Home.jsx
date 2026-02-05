@@ -8,22 +8,23 @@ const Home = ({ user }) => {
 
   const [projects, setProjects] = useState([])
 
-  useEffect(() => {
+    useEffect(() => {
     const handleProjects = async () => {
-      try {
+      if (!user) return
 
+      try {
         const allProjects = await GetProjectDetails()
 
         if (user.userType === "customers") {
           const developerProjects = allProjects.filter(
-            (project) => project.userId.userType === "developer"
+            (project) => project.userId?.userType === "developer"
           )
           setProjects(developerProjects)
         } else {
-          const myProjects = allProjects.filter(
-            (project) => project.userId.userType === "customers"
+          const customerProjects = allProjects.filter(
+            (project) => project.userId?.userType === "customers"
           )
-          setProjects(myProjects)
+          setProjects(customerProjects)
         }
       } catch (error) {
         console.error(error)
