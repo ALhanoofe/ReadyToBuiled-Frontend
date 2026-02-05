@@ -1,4 +1,3 @@
-
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
@@ -37,7 +36,9 @@ const App = () => {
 
   return (
     <>
-      <header><Nav user={user} handleLogOut={handleLogOut} /></header>
+      <header>
+        <Nav user={user} handleLogOut={handleLogOut} />
+      </header>
 
       <Routes>
         <Route path="/" element={<SignIn setUser={setUser} />} />
@@ -48,10 +49,10 @@ const App = () => {
         <Route path="/home/:id" element={<MyProject user={user} />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
-        <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
         <Route path="/Folder" element={<Folders user={user} />} />
         <Route path="/folders/:id" element={<MyProject />} />
+        <Route path="/ProjectDetails" element={<ProjectDetails />} />
 
         <Route path="profile" element={<Profile />} />
       </Routes>
