@@ -1,4 +1,4 @@
-import './style/home.css'
+import "./style/home.css"
 import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
 import SignIn from "./components/SignIn"
@@ -13,7 +13,7 @@ import ProjectDetails from "./components/ProjectDetails"
 import Folders from "./components/Folders"
 import MyProject from "./components/MyProject"
 import FolderForm from "./components/FolderForm"
-import MineProject from './components/mineProject'
+import MineProject from "./components/mineProject"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -45,22 +45,17 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/home" element={<Home user={user} />} />
-
         <Route path="/home/:id" element={<MyProject user={user} />} />
-
+        <Route path="/ProjectForm" element={<ProjectForm />} />
+        <Route path="/folders" element={<Folders user={user} />} />
+        <Route path="/projectDetail/:id" element={<ProjectDetails user={user}/>} />
+        <Route path="/detail/edit/:id" element={<ProjectForm />} />
         <Route path="/ProjectForm" element={<ProjectForm />} />
 
-        <Route path="/folders" element={<Folders user={user} />} />
-
-        <Route path="/projectDetail/:id" element={<ProjectDetails />} />
         <Route path="/folders/:id" element={<MyProject />} />
         <Route path="/mineProject" element={<MineProject user={user} />} />
-
-
         <Route path="/folderForm" element={<FolderForm />} />
-
         <Route path="profile" element={<Profile />} />
       </Routes>
     </>
