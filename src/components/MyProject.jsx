@@ -31,10 +31,9 @@ const ProjectDetails = () => {
       <div className="projectDetails">
         <div className="channel-header">
           <h1>{folder?.pname}</h1>
-          {/*
-          <Link to={`/postForm/${id}`} className="add-post-btn">
+          <Link to={`/projectForm/${id}`} className="add-post-btn">
             + Add New Post
-          </Link> */}
+          </Link>
         </div>
 
         <div className="projectDetail">

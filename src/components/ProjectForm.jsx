@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { CreateProjectDetail } from "../services/ProjectServices"
 import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom";
+
 
 const ProjectForm = () => {
   const navigate = useNavigate()
+  const { folderId } = useParams()
 
   const emptyProject = {
     name: "",
@@ -20,13 +23,6 @@ const ProjectForm = () => {
   const [imageFile, setImageFile] = useState(null)
 
 
-  const addProject = async (e) => {
-    e.preventDefault()
-
-    const createdProject = await CreateProjectDetail(newProject)
-    setNewProject(emptyProject)
-    return createdProject
-  }
 
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
@@ -48,11 +44,14 @@ const ProjectForm = () => {
     formData.append("language", newProject.language)
     formData.append("price", newProject.price)
     formData.append("status", newProject.status)
+    formData.append("folderId", folderId)
+
 
     if (imageFile) {
       formData.append("image", imageFile)
     }
-ء
+    console.log("Form Data:", folderId)
+
     const createdProject = await CreateProjectDetail(formData)
     navigate(`/projectDetail/${createdProject._id}`)
   }

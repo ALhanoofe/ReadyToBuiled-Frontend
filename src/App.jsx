@@ -51,6 +51,7 @@ const App = () => {
         <Route path="/home/:id" element={<MyProject user={user} />} />
 
         <Route path="/ProjectForm" element={<ProjectForm />} />
+        <Route path="/projectForm/:folderId" element={<ProjectForm />} />
 
         <Route path="/folders" element={<Folders user={user} />} />
 
