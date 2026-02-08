@@ -27,6 +27,13 @@ const ProjectDetails = () => {
   return (
     <>
       <div className="projectDetail" key={project?._id}>
+        {project?.image && (
+          <img
+            className="project-image"
+            src={`http://localhost:3000${project.image}`}
+            alt="project"
+          />
+        )}
         <h2>Name:{project?.name}</h2>
         <p>Description:{project?.description}</p>
         <p>Category:{project?.category}</p>

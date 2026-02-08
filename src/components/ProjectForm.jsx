@@ -12,9 +12,13 @@ const ProjectForm = () => {
     language: "",
     price: "",
     status: "",
+    image: "",
   }
 
   const [newProject, setNewProject] = useState(emptyProject)
+
+  const [imageFile, setImageFile] = useState(null)
+
 
   const addProject = async (e) => {
     e.preventDefault()
@@ -29,11 +33,30 @@ const ProjectForm = () => {
 
   }
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0])
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const createdProject = await addProject(e)
+
+    const formData = new FormData()
+
+    formData.append("name", newProject.name)
+    formData.append("description", newProject.description)
+    formData.append("category", newProject.category)
+    formData.append("language", newProject.language)
+    formData.append("price", newProject.price)
+    formData.append("status", newProject.status)
+
+    if (imageFile) {
+      formData.append("image", imageFile)
+    }
+ء
+    const createdProject = await CreateProjectDetail(formData)
     navigate(`/projectDetail/${createdProject._id}`)
   }
+
 
   return (
     <div className="project-page">
@@ -83,6 +106,13 @@ const ProjectForm = () => {
             onChange={handleChange}
             placeholder="Price"
             required
+          />
+
+          <input
+            type="file"
+            name="image/*"
+            onChange={handleImageChange}
+
           />
 
           <select

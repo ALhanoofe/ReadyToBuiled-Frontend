@@ -73,10 +73,18 @@ export const GetProjectById = async (projectId) => {
 
 export const CreateProjectDetail = async (projectData) => {
   try {
-    const res = await Client.post("/detail", projectData)
+    const res = await Client.post("/detail", projectData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     return res.data
   } catch (error) {
     throw error
   }
 }
+
+
+
+
 
