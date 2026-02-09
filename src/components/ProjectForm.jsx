@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { CreateProjectDetail, GetProjectById, UpdateProjectDetail } from "../services/ProjectServices"
+import { useState } from "react"
+import { CreateProjectDetail } from "../services/ProjectServices"
+import { useNavigate } from "react-router-dom"
+
 const ProjectForm = () => {
   const navigate = useNavigate()
-  const { id } = useParams()
 
   const emptyProject = {
     name: "",
@@ -16,20 +16,15 @@ const ProjectForm = () => {
   }
 
   const [newProject, setNewProject] = useState(emptyProject)
+
   const [imageFile, setImageFile] = useState(null)
-  useEffect(() => {
-    if (id) {
-      const fetchProject = async () => {
-        const data = await GetProjectById(id)
-        setNewProject(data)
-      }
-      fetchProject()
-    }
-  }, [id])
+
+
 
 
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
+
   }
 
   const handleImageChange = (e) => {
@@ -38,14 +33,6 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let createdProject
-
-    if (id) {
-      createdProject = await UpdateProjectDetail(id, newProject)
-    } else {
-      createdProject = await addProject(e)
-    }
-
 
     const formData = new FormData()
 
@@ -55,23 +42,21 @@ const ProjectForm = () => {
     formData.append("language", newProject.language)
     formData.append("price", newProject.price)
     formData.append("status", newProject.status)
-    formData.append("folderId", folderId)
 
 
     if (imageFile) {
       formData.append("image", imageFile)
     }
-    console.log("Form Data:", folderId)
 
-    const createdNewProject = await CreateProjectDetail(formData)
-    navigate(`/projectDetail/${createdNewProject._id}`)
+    const createdProject = await CreateProjectDetail(formData)
+    navigate(`/projectDetail/${createdProject._id}`)
   }
 
 
   return (
     <div className="project-page">
       <div className="project-card">
-
+        <h1></h1>
 
         <form onSubmit={handleSubmit}>
           <input
@@ -130,7 +115,6 @@ const ProjectForm = () => {
             value={newProject.status}
             onChange={handleChange}
           >
-            <option value="Select Status"></option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
