@@ -52,6 +52,7 @@ const App = () => {
         <Route path="/projectDetail/:id" element={<ProjectDetails user={user}/>} />
         <Route path="/detail/edit/:id" element={<ProjectForm />} />
         <Route path="/ProjectForm" element={<ProjectForm />} />
+        <Route path="/projectForm/:folderId" element={<ProjectForm />} />
 
         <Route path="/folders/:id" element={<MyProject />} />
         <Route path="/mineProject" element={<MineProject user={user} />} />

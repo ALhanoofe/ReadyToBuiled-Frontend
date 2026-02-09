@@ -12,6 +12,7 @@ const ProjectForm = () => {
     language: "",
     price: "",
     status: "",
+    image: "",
   }
 
   const [newProject, setNewProject] = useState(emptyProject)
@@ -28,27 +29,49 @@ const ProjectForm = () => {
 
   const addProject = async (e) => {
     e.preventDefault()
+  const [imageFile, setImageFile] = useState(null)
 
-    const createdProject = await CreateProjectDetail(newProject)
-    setNewProject(emptyProject)
-    return createdProject
-  }
+
 
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
   }
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0])
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     let createdProject
+    
     if (id) {
       createdProject = await UpdateProjectDetail(id, newProject)
     } else {
       createdProject = await addProject(e)
     }
 
+
+    const formData = new FormData()
+
+    formData.append("name", newProject.name)
+    formData.append("description", newProject.description)
+    formData.append("category", newProject.category)
+    formData.append("language", newProject.language)
+    formData.append("price", newProject.price)
+    formData.append("status", newProject.status)
+    formData.append("folderId", folderId)
+
+
+    if (imageFile) {
+      formData.append("image", imageFile)
+    }
+    console.log("Form Data:", folderId)
+
+    const createdProject = await CreateProjectDetail(formData)
     navigate(`/projectDetail/${createdProject._id}`)
   }
+
 
   return (
     <div className="project-page">
@@ -98,6 +121,13 @@ const ProjectForm = () => {
             onChange={handleChange}
             placeholder="Price"
             required
+          />
+
+          <input
+            type="file"
+            name="image/*"
+            onChange={handleImageChange}
+
           />
 
           <select
