@@ -1,18 +1,45 @@
 import { useEffect, useState } from "react"
 import { CheckSession } from "../services/Auth"
+import { GetRequestsForUser, UpdateRequestStatus } from "../services/Request"
+
 
 const Profile = () => {
   const [user, setUser] = useState(null)
+  const [requests, setRequests] = useState([])
+
 
   useEffect(() => {
     const handleProfile = async () => {
       const session = await CheckSession()
-      console.log(user)
       setUser(session)
     }
 
     handleProfile()
   }, [])
+
+  useEffect(() => {
+  const fetchRequests = async () => {
+    if (user?._id) return
+    try {
+      const data = await GetRequestsForUser(user.id)
+      setRequests(data)
+    } catch (error) {
+      console.error("Failed to fetch requests:", error)
+    }
+  }
+  fetchRequests()
+}, [user])
+
+
+
+  const handleStatusChange = async (requestId, status) => {
+    if (!user?._id) return;
+    await UpdateRequestStatus(requestId, status)
+
+
+    const data = await GetRequestsForUser(user._id)
+    setRequests(data)
+  }
 
   if (!user) return <p>Please register</p>
 
@@ -29,11 +56,33 @@ const Profile = () => {
         <br></br>
         <br />
 
-        <h2>My Projects</h2>
+        <h2>My Request</h2>
         <br></br>
         <br />
-        <div className="grid col-4"></div>
+        <div className="grid col-4">
+          {requests.length === 0 ? (
+          <p>No requests yet</p>
+        ) : (
+          requests.map((req) => (
+            <div key={req._id} className="card">
+              <p><strong>Project:</strong> {req.projectId?.name}</p>
+              <p><strong>Status:</strong> {req.stats}</p>
+
+              {req.stats === "pending" && (
+                <div>
+                  <button onClick={() => handleStatusChange(req._id, "approve")}>
+                    Approve
+                  </button>
+                  <button onClick={() => handleStatusChange(req._id, "rejects")}>
+                    Reject
+                  </button>
+                </div>
+              )}
+            </div>
+          ))
+        )}
       </div>
+        </div>
     </>
   )
 }
