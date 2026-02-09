@@ -16,7 +16,7 @@ const ProjectForm = () => {
   }
 
   const [newProject, setNewProject] = useState(emptyProject)
-
+  const [imageFile, setImageFile] = useState(null)
   useEffect(() => {
     if (id) {
       const fetchProject = async () => {
@@ -27,50 +27,44 @@ const ProjectForm = () => {
     }
   }, [id])
 
-  const addProject = async (e) => {
+
+  const handleChange = (e) => {
+    setNewProject({ ...newProject, [e.target.name]: e.target.value })
+  }
+
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0])
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const [imageFile, setImageFile] = useState(null)
+    let createdProject
 
-
-
-    const handleChange = (e) => {
-      setNewProject({ ...newProject, [e.target.name]: e.target.value })
+    if (id) {
+      createdProject = await UpdateProjectDetail(id, newProject)
+    } else {
+      createdProject = await addProject(e)
     }
 
-    const handleImageChange = (e) => {
-      setImageFile(e.target.files[0])
+
+    const formData = new FormData()
+
+    formData.append("name", newProject.name)
+    formData.append("description", newProject.description)
+    formData.append("category", newProject.category)
+    formData.append("language", newProject.language)
+    formData.append("price", newProject.price)
+    formData.append("status", newProject.status)
+    formData.append("folderId", folderId)
+
+
+    if (imageFile) {
+      formData.append("image", imageFile)
     }
+    console.log("Form Data:", folderId)
 
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      let createdProject
-
-      if (id) {
-        createdProject = await UpdateProjectDetail(id, newProject)
-      } else {
-        createdProject = await addProject(e)
-      }
-
-
-      const formData = new FormData()
-
-      formData.append("name", newProject.name)
-      formData.append("description", newProject.description)
-      formData.append("category", newProject.category)
-      formData.append("language", newProject.language)
-      formData.append("price", newProject.price)
-      formData.append("status", newProject.status)
-      formData.append("folderId", folderId)
-
-
-      if (imageFile) {
-        formData.append("image", imageFile)
-      }
-      console.log("Form Data:", folderId)
-
-      const createdNewProject = await CreateProjectDetail(formData)
-      navigate(`/projectDetail/${createdNewProject._id}`)
-    }
+    const createdNewProject = await CreateProjectDetail(formData)
+    navigate(`/projectDetail/${createdNewProject._id}`)
   }
 
 
