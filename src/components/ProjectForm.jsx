@@ -1,12 +1,9 @@
-import { useState } from "react"
-import { CreateProjectDetail } from "../services/ProjectServices"
-import { useNavigate } from "react-router-dom"
-import { useParams } from "react-router-dom";
-
-
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import {CreateProjectDetail,GetProjectById,UpdateProjectDetail} from "../services/ProjectServices"
 const ProjectForm = () => {
   const navigate = useNavigate()
-  const { folderId } = useParams()
+  const { id } = useParams()
 
   const emptyProject = {
     name: "",
@@ -20,13 +17,24 @@ const ProjectForm = () => {
 
   const [newProject, setNewProject] = useState(emptyProject)
 
+    useEffect(() => {
+    if (id) {
+      const fetchProject = async () => {
+        const data = await GetProjectById(id)
+        setNewProject(data)
+      }
+      fetchProject()
+    }
+  }, [id])
+
+  const addProject = async (e) => {
+    e.preventDefault()
   const [imageFile, setImageFile] = useState(null)
 
 
 
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
-
   }
 
   const handleImageChange = (e) => {
@@ -35,6 +43,14 @@ const ProjectForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    let createdProject
+    
+    if (id) {
+      createdProject = await UpdateProjectDetail(id, newProject)
+    } else {
+      createdProject = await addProject(e)
+    }
+
 
     const formData = new FormData()
 
@@ -60,7 +76,7 @@ const ProjectForm = () => {
   return (
     <div className="project-page">
       <div className="project-card">
-        <h1></h1>
+
 
         <form onSubmit={handleSubmit}>
           <input
@@ -119,6 +135,7 @@ const ProjectForm = () => {
             value={newProject.status}
             onChange={handleChange}
           >
+            <option value="Select Status"></option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>

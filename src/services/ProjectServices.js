@@ -84,6 +84,23 @@ export const CreateProjectDetail = async (projectData) => {
   }
 }
 
+export const UpdateProjectDetail = async (id, data) => {
+  try {
+    const res = await Client.put(`/detail/${id}`, data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const DeleteProjectDetail = async (id) => {
+  try {
+    const res = await Client.delete(`/detail/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
 
 
 
