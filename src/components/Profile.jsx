@@ -19,10 +19,10 @@ const Profile = () => {
 
   useEffect(() => {
   const fetchRequests = async () => {
-    if (!user?._id) return  
+    if (!user?.id) return
 
     try {
-      const data = await GetRequestsForUser(user._id)
+      const data = await GetRequestsForUser(user.id)
       setRequests(data)
     } catch (error) {
       console.error("Failed to fetch requests:", error)
@@ -36,11 +36,11 @@ const Profile = () => {
 
 
   const handleStatusChange = async (requestId, status) => {
-    if (!user?._id) return;
+    if (!user?.id) return;
     await UpdateRequestStatus(requestId, status)
 
 
-    const data = await GetRequestsForUser(user._id)
+    const data = await GetRequestsForUser(user.id)
     setRequests(data)
   }
 
