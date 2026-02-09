@@ -30,21 +30,28 @@ const ProjectDetails = () => {
   }, [])
 
   const handleRequest = async () => {
-    try {
-      await CreateRequest({
-        developerId: userId,
-        projectId: project._id,
-        customerId: project.user._id,
-        stats: "pending",
-      })
+  try {
+    console.log("Sending request with:", {
+      developerId: userId,
+      projectId: project._id,
+      customerId: project.user,
+      stats: "pending",
+    });
 
-      setMessage("Request sent successfully")
-    } catch (error) {
-      setMessage("You already requested this project")
-    }
+    await CreateRequest({
+      developerId: userId,
+      projectId: project._id,
+      customerId: project.user,
+      stats: "pending",
+    })
 
-
+    setMessage("Request sent successfully")
+  } catch (error) {
+    console.log("ERROR:", error.response?.data)
+    setMessage("You already requested this project")
   }
+}
+
   const handleDelete = async () => {
     await DeleteProjectDetail(id)
     navigate("/home")
