@@ -73,10 +73,35 @@ export const GetProjectById = async (projectId) => {
 
 export const CreateProjectDetail = async (projectData) => {
   try {
-    const res = await Client.post("/detail", projectData)
+    const res = await Client.post("/detail", projectData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     return res.data
   } catch (error) {
     throw error
   }
 }
+
+export const UpdateProjectDetail = async (id, data) => {
+  try {
+    const res = await Client.put(`/detail/${id}`, data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const DeleteProjectDetail = async (id) => {
+  try {
+    const res = await Client.delete(`/detail/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+
+
 
