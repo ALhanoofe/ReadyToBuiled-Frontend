@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetProjectById,DeleteProjectDetail } from "../services/ProjectServices"
+import { GetProjectById, DeleteProjectDetail } from "../services/ProjectServices"
 import { CreateRequest } from "../services/Request"
 import "../style/detail.css"
 import { CheckSession } from "../services/Auth"
@@ -10,7 +10,6 @@ const ProjectDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [project, setProject] = useState(null)
-
   const [userId, setUser] = useState(null)
   const [message, setMessage] = useState("")
 
@@ -43,11 +42,14 @@ const ProjectDetails = () => {
     } catch (error) {
       setMessage("You already requested this project")
     }
+
+
+  }
   const handleDelete = async () => {
     await DeleteProjectDetail(id)
     navigate("/home")
   }
-  }
+
   return (
     <>
       <div className="projectDetail" key={project?._id}>
@@ -67,15 +69,15 @@ const ProjectDetails = () => {
         {userId && <button onClick={handleRequest}>Request To Build This Website</button>}
 
         {message && <p>{message}</p>}
-      </div>
-      <div className="actions">
-        <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
 
-        <button onClick={handleDelete} className="delete">
-          Delete
-        </button>
+        <div className="actions">
+          <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
+          <button onClick={handleDelete} className="delete">Delete</button>
+        </div>
       </div>
     </>
   )
+
 }
+
 export default ProjectDetails
