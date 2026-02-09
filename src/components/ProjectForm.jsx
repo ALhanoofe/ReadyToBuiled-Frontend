@@ -1,9 +1,13 @@
-import { useState } from "react"
-import { CreateProjectDetail } from "../services/ProjectServices"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { CreateProjectDetail, GetProjectById, UpdateProjectDetail } from "../services/ProjectServices"
+import { useNavigate, useParams } from "react-router-dom"
 
 const ProjectForm = () => {
   const navigate = useNavigate()
+  const { id, folderId } = useParams()
+
+
+
 
   const emptyProject = {
     name: "",
@@ -14,12 +18,28 @@ const ProjectForm = () => {
     status: "",
     image: "",
   }
-
   const [newProject, setNewProject] = useState(emptyProject)
-
   const [imageFile, setImageFile] = useState(null)
 
+  useEffect(() => {
+    if (id) {
+      const fetchProject = async () => {
+        const projectData = await GetProjectById(id)
+        setNewProject({
+          name: projectData.name || "",
+          description: projectData.description || "",
+          category: projectData.category || "",
+          language: projectData.language || "",
+          price: projectData.price || "",
+          status: projectData.status || "",
+          image: projectData.image || "",
+        })
 
+      }
+      fetchProject()
+
+    }
+  }, [id])
 
 
   const handleChange = (e) => {
@@ -34,6 +54,16 @@ const ProjectForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    let savedProject
+
+    if (id) {
+      savedProject = await UpdateProjectDetail(id, formData)
+    } else {
+      savedProject = await CreateProjectDetail(formData)
+    }
+
+    navigate(`/projectDetail/${savedProject._id}`)
+
     const formData = new FormData()
 
     formData.append("name", newProject.name)
@@ -42,8 +72,10 @@ const ProjectForm = () => {
     formData.append("language", newProject.language)
     formData.append("price", newProject.price)
     formData.append("status", newProject.status)
+    if (folderId) {
+      formData.append("folderId", folderId)
 
-
+    }
     if (imageFile) {
       formData.append("image", imageFile)
     }
@@ -56,7 +88,7 @@ const ProjectForm = () => {
   return (
     <div className="project-page">
       <div className="project-card">
-        <h1></h1>
+        <h1>Project Form</h1>
 
         <form onSubmit={handleSubmit}>
           <input
@@ -105,7 +137,7 @@ const ProjectForm = () => {
 
           <input
             type="file"
-            name="image/*"
+            accept="image/*"
             onChange={handleImageChange}
 
           />

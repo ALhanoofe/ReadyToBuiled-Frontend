@@ -19,38 +19,35 @@ const ProjectDetails = () => {
       setProject(projectData)
     }
     handleProject()
-  }, [id])
-
-  useEffect(() => {
     const getUser = async () => {
       const session = await CheckSession()
       setUser(session.id)
     }
     getUser()
-  }, [])
+  }, [id])
 
   const handleRequest = async () => {
-  try {
-    console.log("Sending request with:", {
-      developerId: userId,
-      projectId: project._id,
-      customerId: project.user,
-      stats: "pending",
-    });
+    try {
+      console.log("Sending request with:", {
+        developerId: userId,
+        projectId: project._id,
+        customerId: project.user,
+        stats: "pending",
+      });
 
-    await CreateRequest({
-      developerId: userId,
-      projectId: project._id,
-      customerId: project.user,
-      stats: "pending",
-    })
+      await CreateRequest({
+        developerId: userId,
+        projectId: project._id,
+        customerId: project.user,
+        stats: "pending",
+      })
 
-    setMessage("Request sent successfully")
-  } catch (error) {
-    console.log("ERROR:", error.response?.data)
-    setMessage("You already requested this project")
+      setMessage("Request sent successfully")
+    } catch (error) {
+      console.log("ERROR:", error.response?.data)
+      setMessage("You already requested this project")
+    }
   }
-}
 
   const handleDelete = async () => {
     await DeleteProjectDetail(id)
@@ -78,8 +75,12 @@ const ProjectDetails = () => {
         {message && <p>{message}</p>}
 
         <div className="actions">
-          <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
-          <button onClick={handleDelete} className="delete">Delete</button>
+          {project?.userId === userId && (
+            <>
+              <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
+              <button onClick={handleDelete} className="delete">Delete</button>
+            </>
+          )}
         </div>
       </div>
     </>
