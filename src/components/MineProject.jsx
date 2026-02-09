@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetProjectDetails } from "../services/ProjectServices";
-import '../style/detail.css'
+import '../style/mineProject.css'
 
 
 
@@ -29,8 +29,8 @@ const MineProject = (
 
   return (
     <>
-      <div className="projectDetails">
-        <div className="channel-header">
+      <div className="mineProjectPage">
+        <div className="mineProjectHeader">
           <h1>My Projects</h1>
           {/*
           <Link to={`/postForm/${id}`} className="add-post-btn">
@@ -38,9 +38,9 @@ const MineProject = (
           </Link> */}
         </div>
 
-        <div className="projectDetail">
+        <div className="mineProjectGrid">
           {projects.map((project) => (
-            <div className="card" key={project._id}>
+            <div className="mineProjectCard" key={project._id}>
               <Link to={`/projectDetail/${project._id}`}>
                 <h2>{project.name}</h2>
               </Link>

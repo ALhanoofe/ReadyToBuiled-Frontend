@@ -1,0 +1,105 @@
+:root {
+  --dark: #2B2B2B;
+  --dark-gray: #565656;
+  --off-white: #E0E0E0;
+  --light-gray: #B3B3B3;
+}
+
+/* Page container */
+.mineProjectPage {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(160deg, var(--dark), var(--dark-gray));
+  border-radius: 26px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  color: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+.mineProjectHeader {
+  margin-bottom: 2.5rem;
+}
+
+.mineProjectHeader h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  position: relative;
+}
+
+.mineProjectHeader h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--off-white), transparent);
+}
+
+/* Grid container */
+.mineProjectGrid {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* Single project card */
+.mineProjectCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 22px;
+  padding: 1.8rem;
+  color: var(--off-white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.mineProjectCard:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.5),
+              inset 0 0 0 1px rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mineProjectCard a {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.mineProjectCard h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+
+.mineProjectCard h2::before {
+  content: "🛠️ ";
+  margin-right: 0.3rem;
+}
+
+/* Hover effect on title */
+.mineProjectCard:hover h2 {
+  color: var(--off-white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mineProjectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mineProjectHeader h1 {
+    font-size: 2rem;
+  }
+
+  .mineProjectPage {
+    padding: 2rem 1.5rem;
+    margin: 2rem 1rem;
+  }
+}
