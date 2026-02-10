@@ -24,7 +24,6 @@ const Nav = () => {
     handleUser()
   }, [user])
 
-  // const isLoggedIn = !!localStorage.getItem("token") //change it to satate
 
   return (
     <nav className="navbar">
