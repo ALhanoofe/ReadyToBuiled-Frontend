@@ -143,6 +143,8 @@ body {
   background-color: var(--off-white);
   font-family: "Inter", "Segoe UI", sans-serif;
   color: var(--dark);
+  height: 100vh;
+
 }
 
 
@@ -264,9 +266,10 @@ body {
 }
 
 
-.card h3::before {
-  content: "📁";
+.projects .card h3::before {
+  content: "💰 ";
 }
+
 
 .card a::after {
   content: "View Details →";
@@ -294,6 +297,4 @@ body {
     font-size: 2.1rem;
   }
 }
-
-
 

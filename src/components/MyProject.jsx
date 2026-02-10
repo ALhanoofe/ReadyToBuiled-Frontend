@@ -28,7 +28,7 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <div className="projectDetails">
+      <div className="projectDetails folder-view">
         <div className="channel-header">
           <h1>{folder?.pname}</h1>
           <Link to={`/projectForm/${id}`} className="add-post-btn">

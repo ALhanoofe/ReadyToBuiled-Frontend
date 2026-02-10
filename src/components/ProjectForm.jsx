@@ -16,7 +16,6 @@ const ProjectForm = () => {
     category: "",
     language: "",
     price: "",
-    status: "",
     image: "",
   }
   const [newProject, setNewProject] = useState(emptyProject)
@@ -32,7 +31,6 @@ const ProjectForm = () => {
           category: projectData.category || "",
           language: projectData.language || "",
           price: projectData.price || "",
-          status: projectData.status || "",
           image: projectData.image || "",
         })
       }
@@ -60,7 +58,6 @@ const ProjectForm = () => {
     formData.append("category", newProject.category)
     formData.append("language", newProject.language)
     formData.append("price", newProject.price)
-    formData.append("status", newProject.status)
     if (folderId) {
       formData.append("folderId", folderId)
     }
@@ -129,14 +126,7 @@ const ProjectForm = () => {
 
           <input type="file" accept="image/*" onChange={handleImageChange} />
 
-          <select
-            name="status"
-            value={newProject.status}
-            onChange={handleChange}
-          >
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
+
 
           <button type="submit">Submit</button>
         </form>
