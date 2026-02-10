@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
-import { CreateProjectDetail, GetProjectById, UpdateProjectDetail } from "../services/ProjectServices"
+import {
+  CreateProjectDetail,
+  GetProjectById,
+  UpdateProjectDetail,
+} from "../services/ProjectServices"
 import { useNavigate, useParams } from "react-router-dom"
 
 const ProjectForm = () => {
   const navigate = useNavigate()
   const { id, folderId } = useParams()
-
-
-
 
   const emptyProject = {
     name: "",
@@ -34,17 +35,13 @@ const ProjectForm = () => {
           status: projectData.status || "",
           image: projectData.image || "",
         })
-
       }
       fetchProject()
-
     }
   }, [id])
 
-
   const handleChange = (e) => {
     setNewProject({ ...newProject, [e.target.name]: e.target.value })
-
   }
 
   const handleImageChange = (e) => {
@@ -56,14 +53,6 @@ const ProjectForm = () => {
 
     let savedProject
 
-    if (id) {
-      savedProject = await UpdateProjectDetail(id, formData)
-    } else {
-      savedProject = await CreateProjectDetail(formData)
-    }
-
-    navigate(`/projectDetail/${savedProject._id}`)
-
     const formData = new FormData()
 
     formData.append("name", newProject.name)
@@ -74,16 +63,19 @@ const ProjectForm = () => {
     formData.append("status", newProject.status)
     if (folderId) {
       formData.append("folderId", folderId)
-
     }
     if (imageFile) {
       formData.append("image", imageFile)
     }
 
-    const createdProject = await CreateProjectDetail(formData)
-    navigate(`/projectDetail/${createdProject._id}`)
-  }
+    if (id) {
+      savedProject = await UpdateProjectDetail(id, formData)
+    } else {
+      savedProject = await CreateProjectDetail(formData)
+    }
 
+    navigate(`/projectDetail/${savedProject._id}`)
+  }
 
   return (
     <div className="project-page">
@@ -135,12 +127,7 @@ const ProjectForm = () => {
             required
           />
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-
-          />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
 
           <select
             name="status"

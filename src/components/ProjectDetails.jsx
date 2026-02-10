@@ -28,13 +28,7 @@ const ProjectDetails = () => {
 
   const handleRequest = async () => {
     try {
-      console.log("Sending request with:", {
-        developerId: userId,
-        projectId: project._id,
-        customerId: project.user,
-        stats: "pending",
-      });
-
+      
       await CreateRequest({
         developerId: userId,
         projectId: project._id,
@@ -44,7 +38,6 @@ const ProjectDetails = () => {
 
       setMessage("Request sent successfully")
     } catch (error) {
-      console.log("ERROR:", error.response?.data)
       setMessage("You already requested this project")
     }
   }

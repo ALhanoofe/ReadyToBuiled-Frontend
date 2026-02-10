@@ -31,7 +31,7 @@ const ProjectDetails = () => {
         <div className="channel-header">
           <h1>{folder?.pname}</h1>
           <Link to={`/projectForm/${id}`} className="add-post-btn">
-            + Add New Post
+            + Add New project
           </Link>
         </div>
 
