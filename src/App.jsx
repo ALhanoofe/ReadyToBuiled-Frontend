@@ -13,7 +13,7 @@ import ProjectDetails from "./components/ProjectDetails"
 import Folders from "./components/Folders"
 import MyProject from "./components/MyProject"
 import FolderForm from "./components/FolderForm"
-import MineProject from "./components/mineProject"
+import MineProject from "./components/MineProject"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -49,7 +49,10 @@ const App = () => {
         <Route path="/home/:id" element={<MyProject user={user} />} />
         <Route path="/ProjectForm" element={<ProjectForm />} />
         <Route path="/folders" element={<Folders user={user} />} />
-        <Route path="/projectDetail/:id" element={<ProjectDetails user={user}/>} />
+        <Route
+          path="/projectDetail/:id"
+          element={<ProjectDetails user={user} />}
+        />
         <Route path="/detail/edit/:id" element={<ProjectForm />} />
         <Route path="/ProjectForm" element={<ProjectForm />} />
         <Route path="/projectForm/:folderId" element={<ProjectForm />} />

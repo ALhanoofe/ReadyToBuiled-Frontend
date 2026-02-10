@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { GetProjectDetails } from "../services/ProjectServices";
-import '../style/mineProject.css'
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import { GetProjectDetails } from "../services/ProjectServices"
+import "../style/mineProject.css"
 
-
-
-const MineProject = (
-  { user }
-) => {
+const MineProject = ({ user }) => {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-
     const handleProject = async () => {
       const allProjects = await GetProjectDetails()
 
@@ -19,13 +14,10 @@ const MineProject = (
         (project) => project.userId?._id === user?.id
       )
       setProjects(myProjects)
-
     }
 
     handleProject()
   })
-
-
 
   return (
     <>
@@ -43,14 +35,8 @@ const MineProject = (
             </div>
           ))}
         </div>
-
-
-
-
-
       </div>
     </>
   )
-
 }
 export default MineProject
