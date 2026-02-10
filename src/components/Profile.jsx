@@ -18,7 +18,7 @@ const Profile = () => {
   const filterRequestsByUser = (data, user) => {
   if (user.userType === "developer") {
     return data.filter((r) => r.developerId._id.toString() === user.id.toString())
-  } else if (user.userType === "customers") {   
+  } else if (user.userType === "customers") {
     return data.filter((r) => r.projectId.userId._id.toString() === user.id.toString())
   }
   return []
@@ -35,11 +35,11 @@ const Profile = () => {
         let data = await GetRequestsForUser(user.id)
 
         setRequests(filterRequestsByUser(data, user))
-        console.log(data)
+
 
 
       } catch (error) {
-        console.error("Failed to fetch requests:", error)
+        console.error(error)
       }
     }
 
@@ -54,7 +54,7 @@ const Profile = () => {
   setRequests(filterRequestsByUser(data, user))
 }
 
-console.log("USER =>", user)
+
 
 
 

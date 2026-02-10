@@ -32,10 +32,6 @@ const MineProject = (
       <div className="mineProjectPage">
         <div className="mineProjectHeader">
           <h1>My Projects</h1>
-          {/*
-          <Link to={`/postForm/${id}`} className="add-post-btn">
-            + Add New Post
-          </Link> */}
         </div>
 
         <div className="mineProjectGrid">
