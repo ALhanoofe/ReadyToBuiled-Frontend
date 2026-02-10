@@ -27,27 +27,27 @@ const Nav = () => {
     <nav className="navbar">
       <h4>Ready To Build</h4>
       <div>
-        <NavLink to="home">Home</NavLink>
+        <NavLink to="home">🏠 Home</NavLink>
         <> </>
 
 
         {isLoggedIn ? (
           <>
 
-            <NavLink to="profile">My Profile</NavLink>
+            <NavLink to="profile">👤 My Profile</NavLink>
 
             {user?.userType === "developer" && (
-              <NavLink to="folders">My Folder</NavLink>
+              <NavLink to="folders">📁 My Folder</NavLink>
             )}
 
             {user?.userType === "customers" && (
               <>
-                <NavLink to="ProjectForm">Add New Project</NavLink>
+                <NavLink to="ProjectForm">➕ Add New Project</NavLink>
 
-                <NavLink to="/mineProject">my project</NavLink>
+                <NavLink to="/mineProject">📁 My project</NavLink>
               </>
             )}
-            <NavLink to="/" onClick={handleLogOut}>Logout</NavLink>
+            <NavLink to="/" onClick={handleLogOut}>🚪 Logout</NavLink>
 
           </>
 
