@@ -76,7 +76,7 @@
   font-size: 1.2rem;
   color: var(--light-gray);
   text-align: center;
-  padding: 2rem 2.5rem;
+  padding: 1px;
   border: 2px dashed rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.05);
