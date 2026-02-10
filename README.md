@@ -1,16 +1,63 @@
-# React + Vite
+ #  ReadyToBuiled
+### “Find the right developer. Build the right website.”
+A platform that connects clients with developers offering ready-made and custom website solutions.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ✨ Overview
 
-Currently, two official plugins are available:
+**ReadyToBuiled** is a marketplace platform that bridges the gap between clients who need websites and developers who build them.
+Clients can browse ready-made websites listed by developers or submit custom requests describing their needs. Each developer has a dedicated profile showcasing their work, with detailed pages for each website including features, demos, technologies used.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## 🌟 Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### 🧑‍💻 Developer Profiles
+Each developer has a public profile showcasing their websites.
+Profiles display listed websites, skills, and technologies used.
 
-## Expanding the ESLint configuration
+### 🔍 Browse
+Customer can browse available websites and purchase them.
+also can see all the technologies used before choosing.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🖥️ Ready-Made & Custom Websites
+Developers can list ready-made websites for direct purchase.
+Customer can submit custom website requests.
+
+### 🔐 Authentication & Security
+User authentication with JSON Web Tokens (JWT).
+Protected routes for creating, updating, and deleting content.
+
+
+
+## 🛠️ Tech Stack
+
+**Backend** : Node.js
+
+**Framework** : Express.js
+
+**Database** : MangoDB
+
+
+## Screenshot Of App
+
+
+## Backend Repository link
+- https://github.com/ALhanoofe/ReadyToBuiled-Backend
+
+## Backend Deployed Link
+
+
+## Figme link
+-
+
+## Hierarchy Diagram
+![Hierarchy Diagram ]
+
+## 🧩 ERD (Entity Relationship Diagram)
+
+
+## 🔮 Future Improvements
+
+- Real-time chat between clients and developers
+- Ratings and reviews for developers
+
+

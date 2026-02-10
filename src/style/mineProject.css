@@ -5,7 +5,7 @@
   --light-gray: #B3B3B3;
 }
 
-/* Page container */
+
 .mineProjectPage {
   max-width: 1000px;
   margin: 4rem auto;
@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-/* Header */
+
 .mineProjectHeader {
   margin-bottom: 2.5rem;
 }
@@ -38,14 +38,14 @@
   background: linear-gradient(90deg, var(--off-white), transparent);
 }
 
-/* Grid container */
+
 .mineProjectGrid {
   display: grid;
   gap: 1.8rem;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
-/* Single project card */
+
 .mineProjectCard {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 22px;
@@ -83,12 +83,12 @@
   margin-right: 0.3rem;
 }
 
-/* Hover effect on title */
+
 .mineProjectCard:hover h2 {
   color: var(--off-white);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .mineProjectGrid {
     grid-template-columns: 1fr;

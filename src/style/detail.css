@@ -290,8 +290,6 @@
   }
 }
 /* img */
-
-/* Project image */
 .project-image {
   width: 100%;
   max-height: 360px;
@@ -368,4 +366,175 @@
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* my project page */
+
+.projectDetails.folder-view {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 3.5rem;
+  background: linear-gradient(160deg, var(--dark), var(--dark-gray));
+  border-radius: 28px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+  color: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.projectDetails.folder-view::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+  animation: folderProjectsGlow 14s linear infinite;
+}
+
+@keyframes folderProjectsGlow {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(18%,14%); }
+  100% { transform: translate(0,0); }
+}
+
+
+.folder-view .channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.folder-view .channel-header h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  position: relative;
+}
+
+
+
+
+.folder-view .channel-header h1::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--off-white), transparent);
+}
+
+
+.folder-view .add-post-btn {
+  padding: 0.75rem 1.7rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: var(--off-white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  transition: all 0.3s ease;
+}
+
+.folder-view .add-post-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-3px);
+  box-shadow:
+    0 15px 30px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+
+.folder-view .projectDetail {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+
+.folder-view .projectDetail .card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 24px;
+  padding: 1.8rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+.folder-view .projectDetail .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+
+.folder-view .projectDetail .card:hover {
+  transform: translateY(-6px) scale(1.03);
+  background: rgba(255,255,255,0.08);
+  box-shadow:
+    0 25px 55px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+
+.folder-view .projectDetail .card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.folder-view .projectDetail .card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.folder-view .projectDetail .card h2::before {
+  content: "🛠️ ";
+}
+
+
+.folder-view .projectDetail .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.folder-view .projectDetail .card:hover::before {
+  transform: translateX(100%);
+}
+
+@media (max-width: 768px) {
+  .projectDetails.folder-view {
+    margin: 2rem 1rem;
+    padding: 2.2rem;
+  }
+
+  .folder-view .channel-header {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .folder-view .projectDetail {
+    grid-template-columns: 1fr;
+  }
 }

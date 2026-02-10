@@ -72,16 +72,13 @@
 }
 
 .navbar a:nth-of-type(4)::before {
-  content: "🚪 ";
+  content: "📁";
 }
 
 .navbar a:nth-of-type(5)::before {
-  content: "📁 ";
+  content: "🚪 ";
 }
 
-.navbar a:nth-of-type(6)::before {
-  content: "📋 ";
-}
 
 
 .navbar a:hover {
@@ -160,6 +157,8 @@ body {
   background-color: var(--off-white);
   font-family: "Inter", "Segoe UI", sans-serif;
   color: var(--dark);
+  height: 100vh;
+
 }
 
 
@@ -279,9 +278,10 @@ body {
 }
 
 
-.card h3::before {
-  content: "📁";
+.projects .card h3::before {
+  content: "💰 ";
 }
+
 
 .card a::after {
   content: "View Details →";
