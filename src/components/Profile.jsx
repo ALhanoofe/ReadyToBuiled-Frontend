@@ -15,6 +15,18 @@ const Profile = () => {
     handleProfile()
   }, [])
 
+  const filterRequestsByUser = (data, user) => {
+  if (user.userType === "developer") {
+    return data.filter((r) => r.developerId._id.toString() === user.id.toString())
+  } else if (user.userType === "customers") {   
+    return data.filter((r) => r.projectId.userId._id.toString() === user.id.toString())
+  }
+  return []
+}
+
+
+
+
   useEffect(() => {
     const fetchRequests = async () => {
       if (!user?.id) return
@@ -22,15 +34,10 @@ const Profile = () => {
       try {
         let data = await GetRequestsForUser(user.id)
 
-        if (user.userType === "developer") {
+        setRequests(filterRequestsByUser(data, user))
+        console.log(data)
 
-          data = data.filter((r) => r.developerId._id === user.id)
-        } else if (user.userType === "customer") {
-          
-          data = data.filter((r) => r.projectId.user === user.id)
-        }
 
-        setRequests(data)
       } catch (error) {
         console.error("Failed to fetch requests:", error)
       }
@@ -40,12 +47,16 @@ const Profile = () => {
   }, [user])
 
   const handleStatusChange = async (requestId, status) => {
-    if (user.userType !== "customer") return
-    await UpdateRequestStatus(requestId, status)
+  if (user.userType !== "customers") return
+  await UpdateRequestStatus(requestId, status)
 
-    const data = await GetRequestsForUser(user.id)
-    setRequests(data)
-  }
+  const data = await GetRequestsForUser(user.id)
+  setRequests(filterRequestsByUser(data, user))
+}
+
+console.log("USER =>", user)
+
+
 
   if (!user) return <p>Please register</p>
 
@@ -78,20 +89,13 @@ const Profile = () => {
                   <strong>Status:</strong> {req.stats}
                 </p>
 
-                {req.stats === "pending" && user.userType === "customer" && (
-                  <div>
-                    <button
-                      onClick={() => handleStatusChange(req._id, "approve")}
-                    >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() => handleStatusChange(req._id, "rejects")}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                )}
+                {req.stats === "pending" && (user.userType === "customer" || user.userType === "customers") && (
+  <div>
+    <button onClick={() => handleStatusChange(req._id, "approve")}>Approve</button>
+    <button onClick={() => handleStatusChange(req._id, "reject")}>Reject</button>
+  </div>
+)}
+
               </div>
             ))
           )}
