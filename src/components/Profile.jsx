@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { CheckSession } from "../services/Auth"
 import { GetRequestsForUser, UpdateRequestStatus } from "../services/Request"
+import '../style/profile.css'
+
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -18,7 +20,7 @@ const Profile = () => {
   const filterRequestsByUser = (data, user) => {
   if (user.userType === "developer") {
     return data.filter((r) => r.developerId._id.toString() === user.id.toString())
-  } else if (user.userType === "customers") {   
+  } else if (user.userType === "customers") {
     return data.filter((r) => r.projectId.userId._id.toString() === user.id.toString())
   }
   return []
@@ -76,7 +78,7 @@ console.log("USER =>", user)
         <h2>My Request</h2>
         <br></br>
         <br />
-        <div className="grid col-4">
+        <div className="requests-grid">
           {requests.length === 0 ? (
             <p>No requests yet</p>
           ) : (
