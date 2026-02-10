@@ -9,7 +9,6 @@ const ProjectDetails = () => {
   const { id } = useParams()
   const [folder, setFolder] = useState(null)
   const [projects, setProject] = useState([])
-
   useEffect(() => {
     if (!id) return
 
