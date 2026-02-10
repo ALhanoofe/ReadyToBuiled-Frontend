@@ -23,10 +23,10 @@ const Profile = () => {
         let data = await GetRequestsForUser(user.id)
 
         if (user.userType === "developer") {
-          // developer sees only requests they sent
+
           data = data.filter((r) => r.developerId._id === user.id)
         } else if (user.userType === "customer") {
-          // customer sees only requests for their projects
+          
           data = data.filter((r) => r.projectId.user === user.id)
         }
 

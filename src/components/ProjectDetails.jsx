@@ -10,7 +10,7 @@ const ProjectDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [project, setProject] = useState(null)
-  const [userId, setUser] = useState(null)
+  const [user, setUser] = useState(null)
   const [message, setMessage] = useState("")
 
   useEffect(() => {
@@ -21,22 +21,16 @@ const ProjectDetails = () => {
     handleProject()
     const getUser = async () => {
       const session = await CheckSession()
-      setUser(session.id)
+      setUser(session)
     }
     getUser()
   }, [id])
 
   const handleRequest = async () => {
     try {
-      console.log("Sending request with:", {
-        developerId: userId,
-        projectId: project._id,
-        customerId: project.user,
-        stats: "pending",
-      });
 
       await CreateRequest({
-        developerId: userId,
+        developerId: user.id,
         projectId: project._id,
         customerId: project.user,
         stats: "pending",
@@ -44,7 +38,6 @@ const ProjectDetails = () => {
 
       setMessage("Request sent successfully")
     } catch (error) {
-      console.log("ERROR:", error.response?.data)
       setMessage("You already requested this project")
     }
   }
@@ -53,6 +46,9 @@ const ProjectDetails = () => {
     await DeleteProjectDetail(id)
     navigate("/home")
   }
+
+
+
 
   return (
     <>
@@ -70,12 +66,20 @@ const ProjectDetails = () => {
         <p>Language:{project?.language}</p>
         <br />
 
-        {userId && <button onClick={handleRequest}>Request To Build This Website</button>}
+        {user &&
+  user.userType === "developer" &&
+  project?.userId !== user.id && (
+    <button onClick={handleRequest}>
+      Request To Build This Website
+    </button>
+)}
+
+
 
         {message && <p>{message}</p>}
 
         <div className="actions">
-          {project?.userId === userId && (
+          {project?.user === user && (
             <>
               <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
               <button onClick={handleDelete} className="delete">Delete</button>
