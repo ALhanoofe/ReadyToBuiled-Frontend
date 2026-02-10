@@ -18,13 +18,13 @@ const Profile = () => {
   }, [])
 
   const filterRequestsByUser = (data, user) => {
-  if (user.userType === "developer") {
-    return data.filter((r) => r.developerId._id.toString() === user.id.toString())
-  } else if (user.userType === "customers") {
-    return data.filter((r) => r.projectId.userId._id.toString() === user.id.toString())
+    if (user.userType === "developer") {
+      return data.filter((r) => r.developerId._id.toString() === user.id.toString())
+    } else if (user.userType === "customers") {
+      return data.filter((r) => r.projectId.userId._id.toString() === user.id.toString())
+    }
+    return []
   }
-  return []
-}
 
 
 
@@ -49,12 +49,12 @@ const Profile = () => {
   }, [user])
 
   const handleStatusChange = async (requestId, status) => {
-  if (user.userType !== "customers") return
-  await UpdateRequestStatus(requestId, status)
+    if (user.userType !== "customers") return
+    await UpdateRequestStatus(requestId, status)
 
-  const data = await GetRequestsForUser(user.id)
-  setRequests(filterRequestsByUser(data, user))
-}
+    const data = await GetRequestsForUser(user.id)
+    setRequests(filterRequestsByUser(data, user))
+  }
 
 
 
@@ -70,7 +70,7 @@ const Profile = () => {
         <h3>Name: {user.name}</h3>
         <h3>Username: {user.username}</h3>
         <h3>Email: {user.email}</h3>
-        <h3>Phone Number: {user.phoneNumber}</h3>
+        <h3>Phone Number: {user.PhoneNumber}</h3>
         <h3></h3>
         <br></br>
         <br />
@@ -92,11 +92,11 @@ const Profile = () => {
                 </p>
 
                 {req.stats === "pending" && (user.userType === "customer" || user.userType === "customers") && (
-  <div>
-    <button onClick={() => handleStatusChange(req._id, "approve")}>Approve</button>
-    <button onClick={() => handleStatusChange(req._id, "reject")}>Reject</button>
-  </div>
-)}
+                  <div>
+                    <button onClick={() => handleStatusChange(req._id, "approve")}>Approve</button>
+                    <button onClick={() => handleStatusChange(req._id, "reject")}>Reject</button>
+                  </div>
+                )}
 
               </div>
             ))
