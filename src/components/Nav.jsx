@@ -33,7 +33,7 @@ const Nav = () => {
 
         {isLoggedIn ? (
           <>
-            <NavLink to="ProjectForm">Add New Project</NavLink>
+
             <NavLink to="profile">My Profile</NavLink>
 
             {user?.userType === "developer" && (
@@ -41,7 +41,11 @@ const Nav = () => {
             )}
 
             {user?.userType === "customers" && (
-              <NavLink to="/mineProject">my project</NavLink>
+              <>
+                <NavLink to="ProjectForm">Add New Project</NavLink>
+
+                <NavLink to="/mineProject">my project</NavLink>
+              </>
             )}
             <NavLink to="/" onClick={handleLogOut}>Logout</NavLink>
 
