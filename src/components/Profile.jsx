@@ -37,11 +37,11 @@ const Profile = () => {
         let data = await GetRequestsForUser(user.id)
 
         setRequests(filterRequestsByUser(data, user))
-        console.log(data)
+
 
 
       } catch (error) {
-        console.error("Failed to fetch requests:", error)
+        console.error(error)
       }
     }
 
@@ -56,7 +56,7 @@ const Profile = () => {
   setRequests(filterRequestsByUser(data, user))
 }
 
-console.log("USER =>", user)
+
 
 
 
