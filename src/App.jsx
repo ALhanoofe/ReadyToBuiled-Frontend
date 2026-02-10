@@ -34,7 +34,7 @@ const App = () => {
     if (token) {
       checkToken()
     }
-  }, [user])
+  }, [])
 
   return (
     <>

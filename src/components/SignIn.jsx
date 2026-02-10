@@ -20,7 +20,7 @@ const SignIn = ({ setUser }) => {
     const userData = await SignInUser(formValues)
     setFormValues(initialState)
     setUser(userData)
-    navigate("/home")
+    window.location.href = "/home"
   }
 
   return (
@@ -56,10 +56,10 @@ const SignIn = ({ setUser }) => {
 
           </div>
 
-              <div className="input-wrapper">
+          <div className="input-wrapper">
             <Link to="register" className="auth-link">if you don't have an account create one !</Link>
 
-            </div>
+          </div>
           <button disabled={!formValues.email || !formValues.password}>
             Sign In
           </button>
