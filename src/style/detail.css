@@ -275,9 +275,7 @@
 }
 
 
-.profile .grid::after {
-  content: "Your projects will appear here ✨";
-}
+
 
 @media (max-width: 768px) {
   .profile {
