@@ -67,19 +67,19 @@ const ProjectDetails = () => {
         <br />
 
         {user &&
-  user.userType === "developer" &&
-  project?.userId !== user.id && (
-    <button onClick={handleRequest}>
-      Request To Build This Website
-    </button>
-)}
+          user.userType === "developer" &&
+          project?.userId !== user.id && (
+            <button onClick={handleRequest}>
+              Request To Build This Website
+            </button>
+          )}
 
 
 
         {message && <p>{message}</p>}
 
         <div className="actions">
-          {project?.user === user && (
+          {project?.userId === user?.id && (
             <>
               <button onClick={() => navigate(`/detail/edit/${id}`)}>Edit</button>
               <button onClick={handleDelete} className="delete">Delete</button>
