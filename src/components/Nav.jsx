@@ -5,30 +5,35 @@ import { useEffect, useState } from "react"
 
 const Nav = () => {
   const [user, setUser] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
   const handleLogOut = () => {
     Signout()
+    setIsLoggedIn(false)
+    setUser(null)
   }
 
   useEffect(() => {
     const handleUser = async () => {
       const session = await CheckSession()
-      setUser(session?.user || session)
+      if (session?.user) {
+        setUser(session?.user)
+        setIsLoggedIn(true)
+      }
     }
 
     handleUser()
   }, [user])
 
-  const isLoggedIn = !!localStorage.getItem("token") //change it to satate
+  // const isLoggedIn = !!localStorage.getItem("token") //change it to satate
 
   return (
     <nav className="navbar">
       <h4>Ready To Build</h4>
       <div>
-        <NavLink to="home">🏠 Home</NavLink>
-        <> </>
 
         {isLoggedIn ? (
           <>
+            <NavLink to="home">🏠 Home</NavLink>
             <NavLink to="profile">👤 My Profile</NavLink>
 
             {user?.userType === "developer" && (
