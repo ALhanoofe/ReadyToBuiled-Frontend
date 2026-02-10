@@ -1,39 +1,38 @@
 import { NavLink } from "react-router-dom"
 import { Signout } from "../services/Auth"
 import { CheckSession } from "../services/Auth"
-import { useEffect, useState } from "react";
-
-
-
+import { useEffect, useState } from "react"
 
 const Nav = () => {
   const [user, setUser] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
   const handleLogOut = () => {
     Signout()
+    setIsLoggedIn(false)
+    setUser(null)
   }
 
   useEffect(() => {
     const handleUser = async () => {
       const session = await CheckSession()
-      setUser(session?.user || session)
+      if (session?.user) {
+        setUser(session?.user)
+        setIsLoggedIn(true)
+      }
     }
 
     handleUser()
-  }, [])
+  }, [user])
 
-  const isLoggedIn = !!localStorage.getItem("token")
 
   return (
     <nav className="navbar">
       <h4>Ready To Build</h4>
       <div>
-        <NavLink to="home">🏠 Home</NavLink>
-        <> </>
-
 
         {isLoggedIn ? (
           <>
-
+            <NavLink to="home">🏠 Home</NavLink>
             <NavLink to="profile">👤 My Profile</NavLink>
 
             {user?.userType === "developer" && (
@@ -47,20 +46,18 @@ const Nav = () => {
                 <NavLink to="/mineProject">📁 My project</NavLink>
               </>
             )}
-            <NavLink to="/" onClick={handleLogOut}>🚪 Logout</NavLink>
-
+            <NavLink to="/" onClick={handleLogOut}>
+              🚪 Logout
+            </NavLink>
           </>
-
         ) : (
           <>
             <NavLink to="/">Sign In</NavLink>
             <> </>
           </>
         )}
-
-
       </div>
-    </nav >
+    </nav>
   )
 }
 
