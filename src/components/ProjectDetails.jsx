@@ -44,7 +44,11 @@ const ProjectDetails = () => {
 
   const handleDelete = async () => {
     await DeleteProjectDetail(id)
-    navigate("/home")
+    if (user?.userType === "customers") {
+      navigate("/mineProject")
+    } else {
+      navigate(`/folders`)
+    }
   }
 
 
