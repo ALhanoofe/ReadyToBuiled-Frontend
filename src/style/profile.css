@@ -61,3 +61,33 @@
 .profile .requests-grid .request-card button.reject:hover {
   background: rgba(255, 80, 80, 0.35);
 }
+
+
+.profile .requests-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.profile .requests-grid p {
+  font-size: 1.2rem;
+  color: var(--light-gray);
+  text-align: center;
+  padding: 2rem 2.5rem;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+.profile .requests-grid p:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--off-white);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+}
