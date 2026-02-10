@@ -64,6 +64,7 @@ const ProjectDetails = () => {
         <p>Description:{project?.description}</p>
         <p>Category:{project?.category}</p>
         <p>Language:{project?.language}</p>
+        <p>Price:{project?.price}</p>
         <br />
 
         {user &&
